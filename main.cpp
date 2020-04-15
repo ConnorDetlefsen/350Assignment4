@@ -1,5 +1,6 @@
 #include "DoublyLinkedList.h"
 #include "GenQueue.h"
+#include "Student.h"
 
 using namespace std;
 
@@ -16,7 +17,9 @@ int main(int argc, char** argv) { /*
   for (int i = 0; i < 9; ++i) {
     cout << a.removeBack() << endl;
     cout << a.removeFront() << endl;
-  } */
+  }
+
+
   GenQueue<char> *q = new GenQueue<char>(10);
 
   q->insert('r');
@@ -35,6 +38,18 @@ int main(int argc, char** argv) { /*
   cout << "purgin queue" << endl;
   while(!q->isEmpty()){
     cout << "remove " << q->remove() << endl;
-  }
+  }  */
+
+  Student connor(15, false);
+  cout << connor.timeNeeded<< endl; //this is got from input
+  cout<<connor.inLine<<endl;
+  cout<<connor.waitTime<<endl;
+  connor.waitTime+=1; //do this every clock tick
+  cout<<connor.waitTime<<endl;
+
+  connor.sumOfTime(); //adds waitTime plus timeNeeded
+  cout << connor.totalTime <<endl; //outputs 15 + 1
+
+
   return 0;
 }
