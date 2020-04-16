@@ -9,7 +9,8 @@ Student::Student(){
   inLine = true;
 }
 
-Student::Student(int timeNeeded1, bool inLine1){
+Student::Student(int arrivalTime1, int timeNeeded1, bool inLine1){
+  arrivalTime = arrivalTime1;
   timeNeeded = timeNeeded1;
   waitTime = 0;
   inLine = inLine1;

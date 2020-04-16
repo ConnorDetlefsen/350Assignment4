@@ -2,6 +2,8 @@
 #include "GenQueue.h"
 #include "Student.h"
 #include "Window.h"
+#include "Simulation.h"
+
 
 using namespace std;
 
@@ -39,7 +41,7 @@ int main(int argc, char** argv) { /*
   cout << "purgin queue" << endl;
   while(!q->isEmpty()){
     cout << "remove " << q->remove() << endl;
-  }  */
+  }
 
   Student *connor = new Student(15, false);
 
@@ -54,7 +56,11 @@ int main(int argc, char** argv) { /*
   window1.StudentDone();
 
   cout << window1.isOpen <<endl;
-
+*/
+ string fileName = argv[1];                   //this bit of code takes file input and puts it into a queue
+ Simulation sim;
+ sim.fileRead(fileName);
+ sim.fileOut();
 
   return 0;
 }

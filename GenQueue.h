@@ -1,3 +1,6 @@
+#ifndef GENQUEUE_H
+#define GENQUEUE_H
+
 #include <iostream>
 
 template <class X>
@@ -18,20 +21,29 @@ class GenQueue
       bool isEmpty();
       int getSize();
 
+      void expand(); //expands queue if it gets full
+
+
       //vars
-      X front; //aka head
-      X rear; //aka tail
+      int front; //aka head
+      int rear; //aka tail
       int mSize;
       int numElements;
 
       X *myQueue; //array
+      X *tempQueue;
+
 };
 
 
 template <class X>
 GenQueue<X>::GenQueue(){
   //defualt constructor
-
+  myQueue = new X[128];
+  mSize = 128;
+  front = 0;
+  rear = -1;
+  numElements = 0;
 }
 
 //overload constructor
@@ -51,7 +63,9 @@ GenQueue<X>::~GenQueue(){
 
 template <class X>
 void GenQueue<X>::insert(X d){
-  //add error checking
+  if(isFull() == true){   //check if full before attempting to push /insert
+    expand(); //expands queue by 10
+  }
   myQueue[++rear] = d;
   ++numElements;
 }
@@ -83,3 +97,15 @@ template <class X>
 int GenQueue<X>::getSize(){
   return numElements;
 }
+
+template <class X>
+void GenQueue<X>::expand(){ //expands stack by 10 slots, uses temporary array
+  tempQueue = new X[mSize + 10];
+  for (int i = 0; i < mSize; ++i){
+    tempQueue[i] = myQueue[i];
+  }
+  mSize += 10;
+  myQueue = tempQueue;
+  delete[] tempQueue;
+}
+#endif
