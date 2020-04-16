@@ -1,6 +1,7 @@
 #include "DoublyLinkedList.h"
 #include "GenQueue.h"
 #include "Student.h"
+#include "Window.h"
 
 using namespace std;
 
@@ -40,15 +41,19 @@ int main(int argc, char** argv) { /*
     cout << "remove " << q->remove() << endl;
   }  */
 
-  Student connor(15, false);
-  cout << connor.timeNeeded<< endl; //this is got from input
-  cout<<connor.inLine<<endl;
-  cout<<connor.waitTime<<endl;
-  connor.waitTime+=1; //do this every clock tick
-  cout<<connor.waitTime<<endl;
+  Student *connor = new Student(15, false);
 
-  connor.sumOfTime(); //adds waitTime plus timeNeeded
-  cout << connor.totalTime <<endl; //outputs 15 + 1
+
+  Window window1;
+  cout << window1.isOpen <<endl;
+
+  window1.StudentToWindow(connor);
+
+  cout << window1.isOpen <<endl;
+
+  window1.StudentDone();
+
+  cout << window1.isOpen <<endl;
 
 
   return 0;
