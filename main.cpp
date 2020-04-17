@@ -60,7 +60,13 @@ int main(int argc, char** argv) { /*
  string fileName = argv[1];                   //this bit of code takes file input and puts it into a queue
  Simulation sim;
  sim.fileRead(fileName);
- sim.fileOut();
+ //sim.fileOut();
 
-  return 0;
+ sim.runSim();
+ sim.studentToWindow();
+cout<< "file input size " << sim.fileInput.getSize() << endl;
+ cout << "fileinput peek " << sim.fileInput.peek()<<endl;
+ cout << "window size " << sim.windowList.getSize() << endl;
+ cout << "student queue size " << sim.studentQueue.getSize()<< endl;
+ return 0;
 }

@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "Student.h"
 #include "GenQueue.h"
+#include "DoublyLinkedList.h"
 
 using namespace std;
 
@@ -15,13 +16,38 @@ class Simulation{
 
     void fileOut();
 
+    void runSim();
+
+    void studentToWindow();
+
+
+
     int windowCount = 0;
+    int studentCount = 0;
+    int openWindows = 0;
+
+    void makeWindows(int windowCount);
+    void makeStudent(int arrivalTime1, int timeNeeded1, bool inLine1);
+
 
     GenQueue<int> fileInput;
     GenQueue<Student*> studentQueue;    //Student Queue
+    DoublyLinkedList<Window*> windowList;
 
-  //  fileInput = new GenQueue<int>();
 
+    Window* newWindow;
+    Student* newStudent;
 
+    Student* tempStudent;
+
+    float meanStudentWait = 0;
+    float medianStudentWait = 0;
+    float longestStudentWait = 0;
+
+    int numStudentWaitOver10 = 0;
+    int numWindowIdleOver5 = 0;
+
+    float meanWindowIdleTime = 0;
+    float longestWindowIdleTime = 0;
 
 };

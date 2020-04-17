@@ -15,15 +15,71 @@ void Simulation::fileRead(string fileName){
     while (fin) {     //reads in input from text file given from user
       getline(fin, line);
       for(int i = 0; i < line.length(); ++i){
-        char a = line[i];  //changes the file input from char to integers
-        int ia = a - '0';
-        fileInput.insert(ia);
+        if(line.length() == 1){
+          char a = line[i];  //changes the file input from char to integers
+          int ia = a - '0';
+          fileInput.insert(ia);
+        }
+        if(line.length() > 1){
+          int test = stoi(line);
+          fileInput.insert(test);
+          break;
+        }
       }
     }
 }
-void Simulation::fileOut(){
+void Simulation::fileOut(){   //not used just for testing
   cout << "purgin queue" << endl;
   while(!fileInput.isEmpty()){
     cout << "remove " << fileInput.remove() << endl;
+  }
+}
+
+void Simulation::makeWindows(int windowCount){    //makes # of windows, this is used in runSim()
+  for(int i = 0; i < windowCount; ++i){
+      newWindow = new Window();
+    //  windowList.insertFront(newWindow);
+      ++openWindows;
+  }
+}
+
+void Simulation::runSim(){ //fills window list and student queue based on input
+  int count = 0;
+  while(!fileInput.isEmpty()){
+    if(count == 0){
+      makeWindows(fileInput.peek());
+      fileInput.remove();
+      ++count;
+    }
+    if(count == 1){
+      int timeArrival = 0;
+      int numStudents = 0;
+      int timeNeeded = 0;
+      timeArrival = fileInput.peek();
+      fileInput.remove();
+      numStudents = fileInput.peek();
+      fileInput.remove();
+      for(int i = 0; i < numStudents; ++i){
+        timeNeeded = fileInput.peek();
+        fileInput.remove();
+        newStudent = new Student(timeArrival, timeNeeded, true);
+        studentQueue.insert(newStudent);
+        }
+      continue;
+      }
+      break;
+  }
+}
+
+void Simulation::studentToWindow(){     //students go to open window and are removed from studentQueue
+  while(!studentQueue.isEmpty()){     //need to figure out clock here and how to finish after windows are first filled
+    for(int i = 0; i < openWindows; ++i){
+      if (newWindow[i].isOpen){
+        Student *tempStudent = studentQueue.peek();
+        newWindow[i].currStudent = tempStudent;
+        studentQueue.remove();
+      }
+    }
+    break;
   }
 }

@@ -1,3 +1,5 @@
+#ifndef DOUBLYLINKEDLIST_H
+#define DOUBLYLINKEDLIST_H
 #include <iostream>
 #include <stdexcept>
 #include "ListNode.h"
@@ -133,3 +135,4 @@ X DoublyLinkedList<X>::remove(X key) { //search for data and remove it
 
   return temp;
 }
+#endif

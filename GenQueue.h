@@ -73,6 +73,7 @@ void GenQueue<X>::insert(X d){
 template <class X>
 X GenQueue<X>::remove(){
   //error checking
+  cout<<"removed " << myQueue[front] << endl;
   X c = '\0';
   c = myQueue[front];
   ++front;
