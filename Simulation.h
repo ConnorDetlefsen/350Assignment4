@@ -20,7 +20,11 @@ class Simulation{
 
     void studentToWindow();
 
+    void isIdle();  // calculated mean idle time
+    void printStats(); //prints out all stats at end
+    void studentInLine(); //calculate mean wait time
 
+    int numStudents = 0;
 
     int windowCount = 0;
     int studentCount = 0;

@@ -53,7 +53,6 @@ void Simulation::runSim(){ //fills window list and student queue based on input
     }
     if(count == 1){
       int timeArrival = 0;
-      int numStudents = 0;
       int timeNeeded = 0;
       timeArrival = fileInput.peek();
       fileInput.remove();
@@ -77,9 +76,38 @@ void Simulation::studentToWindow(){     //students go to open window and are rem
       if (newWindow[i].isOpen){
         Student *tempStudent = studentQueue.peek();
         newWindow[i].currStudent = tempStudent;
+        newWindow[i].isOpen = false;
         studentQueue.remove();
+
       }
-    }
-    break;
+      else{
+        studentInLine();
+      }
+
+    } /*
+    for(int i = 0; i < openWindows; ++i){
+      if(newWindow[i].isOpen == false){
+        int addToSum = newWindow[i].currStudent->timeNeeded - newWindow[i].currStudent->arrivalTime;
+        newWindow[i].currStudent = NULL;
+        newWindow[i].isOpen = true;
+      }
+    } */
   }
+}
+
+void Simulation::isIdle(){      //i think we might be looking at the time thing the wrong way but idk
+  for(int i = 0; i < windowCount; ++i){
+    if(newWindow[i].isOpen)
+      ++meanWindowIdleTime;
+  }
+}
+
+void Simulation::studentInLine(){
+  int studentsWaiting = studentQueue.getSize();
+  ++meanStudentWait;
+}
+
+void Simulation::printStats(){
+  cout << "mean idle window time " << meanWindowIdleTime/windowCount << endl;
+  cout << "mean student wait time " << meanStudentWait/numStudents << endl;
 }

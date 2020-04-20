@@ -68,5 +68,6 @@ cout<< "file input size " << sim.fileInput.getSize() << endl;
  cout << "fileinput peek " << sim.fileInput.peek()<<endl;
  cout << "window size " << sim.windowList.getSize() << endl;
  cout << "student queue size " << sim.studentQueue.getSize()<< endl;
+ sim.printStats();
  return 0;
 }
